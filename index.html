@@ -2,10 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Was soll Niklas tun?</title>
 
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#1a1508">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -34,14 +34,24 @@
 
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
-html, body { height:100%; }
+html {
+  height:100%;
+  /* Fallback-Farbe hinter der Statusleiste, falls kein Verlauf greift */
+  background:#1a1508;
+}
 body {
   min-height:100vh;
+  min-height:100dvh;
   background:
     radial-gradient(circle at 50% 0%, rgba(212,175,55,0.12) 0%, transparent 45%),
     linear-gradient(160deg,#1a1508 0%,#0d0d0d 45%,#000000 100%);
+  background-attachment:fixed;
   display:flex;flex-direction:column;align-items:center;
-  padding:26px 16px 48px;
+  /* Safe-Area: Inhalt bleibt unter Notch/Statusleiste, Hintergrund füllt aber alles */
+  padding-top:calc(26px + env(safe-area-inset-top));
+  padding-left:calc(16px + env(safe-area-inset-left));
+  padding-right:calc(16px + env(safe-area-inset-right));
+  padding-bottom:calc(48px + env(safe-area-inset-bottom));
   font-family:"Georgia","Times New Roman",serif;
   overflow-x:hidden;
 }
